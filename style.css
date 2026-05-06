@@ -1,0 +1,400 @@
+/* ============================================
+   Hieróglifos — Estética egípcia / pergaminho
+   ============================================ */
+
+:root {
+  --sand:        #e9d8a6;
+  --sand-dark:   #c9a86b;
+  --papyrus:     #f4e4bc;
+  --ink:         #2b1d0e;
+  --gold:        #d4a017;
+  --gold-deep:   #a87a0a;
+  --lapis:       #1f4e79;
+  --terracotta:  #b04a2f;
+  --green-nile:  #4d7c4f;
+  --shadow:      0 4px 14px rgba(0,0,0,0.25);
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  font-family: 'Georgia', 'Times New Roman', serif;
+  color: var(--ink);
+  background:
+    radial-gradient(ellipse at top, #f8e6b8 0%, #d6b16a 60%, #8b6a3a 100%);
+  background-attachment: fixed;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    repeating-linear-gradient(0deg, rgba(0,0,0,0.03) 0 1px, transparent 1px 4px),
+    repeating-linear-gradient(90deg, rgba(0,0,0,0.03) 0 1px, transparent 1px 4px);
+  z-index: 0;
+}
+
+#app {
+  position: relative;
+  z-index: 1;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 24px 16px 80px;
+}
+
+footer {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 12px;
+  color: #5a3e1c;
+  opacity: 0.8;
+}
+
+/* ====== Painel "papiro" ====== */
+.scroll {
+  background: var(--papyrus);
+  border: 3px double var(--gold-deep);
+  border-radius: 6px;
+  padding: 28px 32px;
+  box-shadow: var(--shadow);
+  position: relative;
+}
+.scroll::before, .scroll::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0;
+  height: 18px;
+  background: repeating-linear-gradient(90deg,
+    var(--gold-deep) 0 8px, var(--gold) 8px 16px);
+  border-radius: 3px;
+}
+.scroll::before { top: -10px; }
+.scroll::after  { bottom: -10px; }
+
+h1, h2, h3 {
+  font-family: 'Papyrus', 'Georgia', serif;
+  letter-spacing: 1px;
+  color: var(--ink);
+  margin-top: 0;
+}
+h1 {
+  font-size: 2.4em;
+  text-align: center;
+  text-shadow: 1px 1px 0 var(--gold);
+  border-bottom: 2px solid var(--gold-deep);
+  padding-bottom: 10px;
+}
+h2 { color: var(--lapis); }
+.hieroglyph-row {
+  text-align: center;
+  font-size: 1.6em;
+  letter-spacing: 8px;
+  color: var(--gold-deep);
+  margin: 6px 0 14px;
+  user-select: none;
+}
+
+p { line-height: 1.55; }
+
+/* ====== Botões ====== */
+button, .btn {
+  font-family: inherit;
+  background: linear-gradient(180deg, var(--gold) 0%, var(--gold-deep) 100%);
+  color: #fff;
+  border: 2px solid var(--gold-deep);
+  padding: 10px 22px;
+  font-size: 1em;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  border-radius: 4px;
+  text-shadow: 1px 1px 0 rgba(0,0,0,0.3);
+  box-shadow: 0 3px 0 var(--gold-deep), 0 5px 8px rgba(0,0,0,0.2);
+  transition: transform 0.08s, box-shadow 0.08s;
+}
+button:hover, .btn:hover {
+  transform: translateY(1px);
+  box-shadow: 0 2px 0 var(--gold-deep), 0 3px 5px rgba(0,0,0,0.2);
+}
+button:active, .btn:active {
+  transform: translateY(3px);
+  box-shadow: 0 0 0 var(--gold-deep);
+}
+button.secondary {
+  background: linear-gradient(180deg, #8a6a3a 0%, #5a4222 100%);
+  border-color: #5a4222;
+  box-shadow: 0 3px 0 #5a4222, 0 5px 8px rgba(0,0,0,0.2);
+}
+button.danger {
+  background: linear-gradient(180deg, #c2553a 0%, #8a3520 100%);
+  border-color: #8a3520;
+  box-shadow: 0 3px 0 #8a3520, 0 5px 8px rgba(0,0,0,0.2);
+}
+
+.center { text-align: center; }
+.row { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; align-items: center; }
+.spacer { height: 20px; }
+
+/* ====== Mapa de câmaras ====== */
+.chamber-map {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 14px;
+  margin-top: 20px;
+}
+.chamber-card {
+  background: var(--sand);
+  border: 2px solid var(--gold-deep);
+  border-radius: 6px;
+  padding: 14px;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s;
+  position: relative;
+}
+.chamber-card:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+.chamber-card.locked { opacity: 0.45; cursor: not-allowed; filter: grayscale(60%); }
+.chamber-card.completed { background: linear-gradient(135deg, var(--sand) 60%, #f5d76e 100%); }
+.chamber-card .glyph { font-size: 2.4em; display: block; margin-bottom: 4px; }
+.chamber-card .check {
+  position: absolute; top: 6px; right: 8px;
+  color: var(--green-nile); font-weight: bold; font-size: 1.2em;
+}
+
+/* ====== HUD topo ====== */
+.hud {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(43, 29, 14, 0.85);
+  color: var(--sand);
+  padding: 10px 16px;
+  border-radius: 4px;
+  margin-bottom: 16px;
+  font-size: 0.95em;
+}
+.hud .score { color: var(--gold); font-weight: bold; }
+
+/* ====== Conjuntos / elementos clicáveis ====== */
+.elements-pool {
+  display: flex; flex-wrap: wrap; gap: 10px;
+  justify-content: center;
+  margin: 18px 0;
+  min-height: 60px;
+  padding: 12px;
+  background: rgba(255,255,255,0.4);
+  border: 2px dashed var(--gold-deep);
+  border-radius: 6px;
+}
+.element {
+  display: inline-flex;
+  align-items: center; justify-content: center;
+  min-width: 44px; height: 44px;
+  padding: 0 12px;
+  background: var(--sand);
+  border: 2px solid var(--gold-deep);
+  border-radius: 50px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.1s, background 0.15s;
+  user-select: none;
+}
+.element:hover { transform: scale(1.08); }
+.element.selected {
+  background: var(--gold);
+  color: #fff;
+  border-color: var(--gold-deep);
+  box-shadow: 0 0 0 3px rgba(212,160,23,0.4);
+}
+.element.disabled { opacity: 0.4; cursor: not-allowed; }
+
+/* ====== Diagrama de Venn (SVG) ====== */
+.venn-wrap { display: flex; justify-content: center; margin: 16px 0; }
+.venn-svg { max-width: 100%; height: auto; }
+
+.venn-region {
+  cursor: pointer;
+  fill-opacity: 0.35;
+  stroke-width: 3;
+  transition: fill-opacity 0.15s;
+}
+.venn-region:hover { fill-opacity: 0.6; }
+.venn-region.active { fill-opacity: 0.75; stroke: var(--terracotta); stroke-width: 4; }
+
+.venn-label {
+  font-weight: bold;
+  font-size: 18px;
+  fill: var(--ink);
+  pointer-events: none;
+  text-anchor: middle;
+}
+.venn-element {
+  font-size: 16px;
+  font-weight: bold;
+  fill: var(--ink);
+  text-anchor: middle;
+  pointer-events: none;
+}
+
+/* ====== Feedback ====== */
+.feedback {
+  margin: 16px 0;
+  padding: 14px 18px;
+  border-radius: 6px;
+  font-weight: bold;
+  text-align: center;
+  animation: pop 0.25s ease;
+}
+.feedback.ok  { background: #c8e6c9; color: #2e7d32; border: 2px solid #2e7d32; }
+.feedback.err { background: #ffcdd2; color: #b71c1c; border: 2px solid #b71c1c; }
+.feedback.info { background: #fff3cd; color: #856404; border: 2px solid #856404; }
+
+@keyframes pop {
+  0% { transform: scale(0.85); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* ====== Quiz ====== */
+.question-box {
+  background: rgba(255,255,255,0.5);
+  padding: 18px 22px;
+  border-left: 5px solid var(--lapis);
+  border-radius: 4px;
+  margin: 14px 0;
+  font-size: 1.1em;
+}
+.alternatives { display: grid; gap: 10px; margin-top: 14px; }
+.alt-btn {
+  text-align: left;
+  background: var(--sand);
+  color: var(--ink);
+  border: 2px solid var(--gold-deep);
+  padding: 12px 16px;
+  font-size: 1em;
+  text-shadow: none;
+  box-shadow: 0 2px 0 var(--gold-deep);
+  border-radius: 6px;
+  cursor: pointer;
+}
+.alt-btn:hover { background: var(--gold); color: #fff; }
+.alt-btn.correct { background: #66bb6a; color: #fff; border-color: #2e7d32; }
+.alt-btn.wrong   { background: #ef5350; color: #fff; border-color: #b71c1c; }
+.alt-btn:disabled { cursor: not-allowed; opacity: 0.85; }
+
+/* ====== Tutorial / dicas ====== */
+.tip {
+  background: rgba(31, 78, 121, 0.1);
+  border-left: 4px solid var(--lapis);
+  padding: 10px 14px;
+  margin: 12px 0;
+  font-style: italic;
+}
+.tip strong { font-style: normal; color: var(--lapis); }
+
+/* ====== Progresso final ====== */
+.score-card {
+  text-align: center;
+  font-size: 1.4em;
+  padding: 20px;
+  background: rgba(212, 160, 23, 0.15);
+  border: 2px dashed var(--gold-deep);
+  border-radius: 8px;
+  margin: 20px 0;
+}
+.score-card .big {
+  font-size: 2.4em;
+  color: var(--gold-deep);
+  font-weight: bold;
+  display: block;
+  margin: 8px 0;
+}
+
+/* ====== Câmara do Complemento: marcador "pertence a A" ====== */
+.element.in-set {
+  border-color: var(--terracotta);
+  border-width: 3px;
+  box-shadow: 0 0 0 2px rgba(176, 74, 47, 0.2);
+}
+
+/* ====== Câmara das Relações: matriz e checkboxes ====== */
+.rel-block {
+  background: rgba(255,255,255,0.45);
+  border: 2px solid var(--gold-deep);
+  border-radius: 6px;
+  padding: 14px 18px;
+  margin: 14px 0;
+}
+.rel-block h3 {
+  margin: 0 0 10px;
+  font-family: 'Georgia', serif;
+  color: var(--lapis);
+  font-size: 1.05em;
+}
+.rel-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  align-items: flex-start;
+}
+.rel-matrix {
+  border-collapse: collapse;
+  background: var(--papyrus);
+  border: 2px solid var(--ink);
+  font-family: 'Georgia', serif;
+}
+.rel-matrix th, .rel-matrix td {
+  border: 1px solid var(--ink);
+  width: 36px;
+  height: 36px;
+  text-align: center;
+  font-size: 1.1em;
+}
+.rel-matrix th {
+  background: var(--sand-dark);
+  color: var(--ink);
+}
+.rel-matrix td.on {
+  background: var(--lapis);
+  color: #fff;
+  font-weight: bold;
+  font-size: 1.4em;
+}
+.rel-checks {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 1em;
+}
+.rel-checks label {
+  cursor: pointer;
+  user-select: none;
+  padding: 3px 6px;
+  border-radius: 3px;
+  transition: background 0.15s;
+}
+.rel-checks label:hover { background: rgba(212, 160, 23, 0.2); }
+.rel-checks input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  margin-right: 6px;
+  vertical-align: middle;
+  accent-color: var(--gold-deep);
+}
+.rel-eq {
+  margin-top: 6px;
+  padding-top: 6px;
+  border-top: 1px dashed var(--gold-deep);
+}
+
+/* ====== Responsivo ====== */
+@media (max-width: 600px) {
+  .scroll { padding: 18px 16px; }
+  h1 { font-size: 1.7em; }
+  .hieroglyph-row { font-size: 1.2em; letter-spacing: 4px; }
+}
