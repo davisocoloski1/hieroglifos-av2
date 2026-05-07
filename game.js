@@ -176,13 +176,21 @@ function chamberC1() {
   const allPairs = ['AB','BA','AC','CA','BC','CB','AA','BB','CC'];
   const correctPairs = new Set(['AB','BA','AC','CA','BC','CB']);
   let chosen = new Set();
+  let stage1Done = false;
 
   function drawStage1(msg='') {
     const elems = allPairs.map(p => `
-      <span class="element ${chosen.has(p) ? 'selected' : ''}"
-            onclick="window._c1Click('${p}')"
+      <span class="element ${chosen.has(p) ? 'selected' : ''} ${stage1Done ? 'disabled' : ''}"
+            onclick="${stage1Done ? '' : `window._c1Click('${p}')`}"
             style="min-width:50px; font-family:monospace;">${p}</span>
     `).join('');
+
+    const actionRow = stage1Done
+      ? `<div class="row"><button onclick="window._c1ToStage2()">Avançar para Estágio 2 →</button></div>`
+      : `<div class="row">
+           <button onclick="window._c1Check()">Confirmar</button>
+           <button class="secondary" onclick="window._c1Reset()">Limpar</button>
+         </div>`;
 
     render(`
       ${hud()}
@@ -203,10 +211,7 @@ function chamberC1() {
         </p>
         <div class="elements-pool">${elems}</div>
         ${msg}
-        <div class="row">
-          <button onclick="window._c1Check()">Confirmar</button>
-          <button class="secondary" onclick="window._c1Reset()">Limpar</button>
-        </div>
+        ${actionRow}
       </div>
     `);
   }
@@ -216,7 +221,7 @@ function chamberC1() {
       ${hud()}
       <div class="scroll">
         <h2>𓂀 Câmara do Escriba — Estágio 2/2</h2>
-        <p>Parabéns! Agora aplique a fórmula.</p>
+        <p>Agora aplique a fórmula.</p>
         <div class="tip">
           <strong>Fórmula:</strong> <code>A(n, p) = n! / (n − p)!</code><br>
           Equivale ao produto de <em>p</em> fatores decrescentes a partir de <em>n</em>:
@@ -253,17 +258,20 @@ function chamberC1() {
   }
 
   window._c1Click = p => {
+    if (stage1Done) return;
     if (chosen.has(p)) chosen.delete(p); else chosen.add(p);
     drawStage1();
   };
   window._c1Reset = () => { chosen = new Set(); drawStage1(); };
   window._c1Check = () => {
     if (setEqual(chosen, correctPairs)) {
-      drawStage2(feedback('𓋹 Correto! Há 6 arranjos: AB, BA, AC, CA, BC, CB. A ordem importa e não há repetição!', 'ok'));
+      stage1Done = true;
+      drawStage1(feedback('𓋹 Correto! Há 6 arranjos: AB, BA, AC, CA, BC, CB. A ordem importa e não há repetição!', 'ok'));
     } else {
       drawStage1(feedback('Ainda não. Lembre: a ordem importa (AB ≠ BA) e elementos NÃO se repetem (AA é inválido).', 'err'));
     }
   };
+  window._c1ToStage2 = () => drawStage2();
   window._c1Ans2 = v => {
     if (v === 60) {
       completeChamber(20);
@@ -284,7 +292,17 @@ function chamberC1() {
    ============================================================ */
 
 function chamberC2() {
+  let stage1Done = false;
+
   function drawStage1(msg='') {
+    const altsHtml = stage1Done
+      ? `<div class="row"><button onclick="window._c2ToStage2()">Avançar para Estágio 2 →</button></div>`
+      : `<div class="alternatives" style="max-width:420px; margin: 0 auto;">
+          ${[35, 105, 210, 840].map((v, i) =>
+            `<button class="alt-btn" onclick="window._c2Ans1(${v})">${String.fromCharCode(65+i)}) ${v}</button>`
+          ).join('')}
+        </div>`;
+
     render(`
       ${hud()}
       <div class="scroll">
@@ -300,11 +318,7 @@ function chamberC2() {
           e <strong>não há repetição</strong> (um escriba não ocupa dois lugares).
         </div>
         <p class="center"><strong>Desafio:</strong> Quantos pódios distintos são possíveis?</p>
-        <div class="alternatives" style="max-width:420px; margin: 0 auto;">
-          ${[35, 105, 210, 840].map((v, i) =>
-            `<button class="alt-btn" onclick="window._c2Ans1(${v})">${String.fromCharCode(65+i)}) ${v}</button>`
-          ).join('')}
-        </div>
+        ${altsHtml}
         ${msg}
       </div>
     `);
@@ -373,11 +387,13 @@ function chamberC2() {
 
   window._c2Ans1 = v => {
     if (v === 210) {
-      drawStage2(feedback('𓋹 Correto! A(7, 3) = 7 × 6 × 5 = 210.', 'ok'));
+      stage1Done = true;
+      drawStage1(feedback('𓋹 Correto! A(7, 3) = 7 × 6 × 5 = 210.', 'ok'));
     } else {
       drawStage1(feedback('Não. A(7, 3) = 7 × 6 × 5. Multiplique os 3 fatores decrescentes a partir de 7.', 'err'));
     }
   };
+  window._c2ToStage2 = () => drawStage2();
   window._c2PairClick = id => {
     if (chosenPairs.has(id)) chosenPairs.delete(id); else chosenPairs.add(id);
     drawStage2();
@@ -407,7 +423,17 @@ function chamberC2() {
    ============================================================ */
 
 function chamberC3() {
+  let stage1Done = false;
+
   function drawStage1(msg='') {
+    const altsHtml = stage1Done
+      ? `<div class="row"><button onclick="window._c3ToStage2()">Avançar para Estágio 2 →</button></div>`
+      : `<div class="alternatives" style="max-width:420px; margin: 0 auto;">
+          ${[8, 12, 16, 24].map((v, i) =>
+            `<button class="alt-btn" onclick="window._c3Ans1(${v})">${String.fromCharCode(65+i)}) ${v}</button>`
+          ).join('')}
+        </div>`;
+
     render(`
       ${hud()}
       <div class="scroll">
@@ -423,11 +449,7 @@ function chamberC3() {
           Fórmula: <code>AR(n, p) = nᵖ</code>
         </div>
         <p class="center"><strong>Desafio:</strong> Quantos selos distintos o artesão pode criar? Calcule <code>AR(4, 2)</code>.</p>
-        <div class="alternatives" style="max-width:420px; margin: 0 auto;">
-          ${[8, 12, 16, 24].map((v, i) =>
-            `<button class="alt-btn" onclick="window._c3Ans1(${v})">${String.fromCharCode(65+i)}) ${v}</button>`
-          ).join('')}
-        </div>
+        ${altsHtml}
         ${msg}
       </div>
     `);
@@ -475,11 +497,13 @@ function chamberC3() {
 
   window._c3Ans1 = v => {
     if (v === 16) {
-      drawStage2(feedback('𓋹 Correto! AR(4, 2) = 4² = 16.', 'ok'));
+      stage1Done = true;
+      drawStage1(feedback('𓋹 Correto! AR(4, 2) = 4² = 16.', 'ok'));
     } else {
       drawStage1(feedback('Não. AR(n, p) = nᵖ. Portanto AR(4, 2) = 4² = 16.', 'err'));
     }
   };
+  window._c3ToStage2 = () => drawStage2();
   window._c3Ans2 = v => {
     if (v === 1000) {
       completeChamber(25);
@@ -500,7 +524,17 @@ function chamberC3() {
    ============================================================ */
 
 function chamberC4() {
+  let stage1Done = false;
+
   function drawStage1(msg='') {
+    const altsHtml = stage1Done
+      ? `<div class="row"><button onclick="window._c4ToStage2()">Avançar para Estágio 2 →</button></div>`
+      : `<div class="alternatives" style="max-width:420px; margin: 0 auto;">
+          ${[210, 1260, 5040, 10000].map((v, i) =>
+            `<button class="alt-btn" onclick="window._c4Ans1(${v})">${String.fromCharCode(65+i)}) ${String(v).replace(/\B(?=(\d{3})+(?!\d))/g, '.')}</button>`
+          ).join('')}
+        </div>`;
+
     render(`
       ${hud()}
       <div class="scroll">
@@ -515,11 +549,7 @@ function chamberC4() {
           <code>A(10, 4) = 10 × 9 × 8 × 7</code>
         </div>
         <p class="center"><strong>Desafio:</strong> De quantas formas a galeria pode ser organizada?</p>
-        <div class="alternatives" style="max-width:420px; margin: 0 auto;">
-          ${[210, 1260, 5040, 10000].map((v, i) =>
-            `<button class="alt-btn" onclick="window._c4Ans1(${v})">${String.fromCharCode(65+i)}) ${String(v).replace(/\B(?=(\d{3})+(?!\d))/g, '.')}</button>`
-          ).join('')}
-        </div>
+        ${altsHtml}
         ${msg}
       </div>
     `);
@@ -568,11 +598,13 @@ function chamberC4() {
 
   window._c4Ans1 = v => {
     if (v === 5040) {
-      drawStage2(feedback('𓋹 Correto! A(10, 4) = 10 × 9 × 8 × 7 = 5.040.', 'ok'));
+      stage1Done = true;
+      drawStage1(feedback('𓋹 Correto! A(10, 4) = 10 × 9 × 8 × 7 = 5.040.', 'ok'));
     } else {
       drawStage1(feedback('Não. Calcule A(10, 4) = 10 × 9 × 8 × 7.', 'err'));
     }
   };
+  window._c4ToStage2 = () => drawStage2();
   window._c4Ans2 = v => {
     if (v === 125) {
       completeChamber(30);
