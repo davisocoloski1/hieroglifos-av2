@@ -98,7 +98,7 @@ function showMenu() {
   const cards = CHAMBERS.map((c, i) => {
     const prev = i === 0 ? true : state.completed.has(CHAMBERS[i-1].id);
     const done = state.completed.has(c.id);
-    const locked = !prev && !done;
+    const locked = !prev && !done && c.id !== 'c6';
     const cls = `chamber-card ${locked ? 'locked' : ''} ${done ? 'completed' : ''}`;
     const onclick = locked ? '' : `onclick="enterChamber('${c.id}')"`;
     const check = done ? '<span class="check">✓</span>' : '';

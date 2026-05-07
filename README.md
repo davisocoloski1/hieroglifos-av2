@@ -28,21 +28,6 @@ python -m http.server 8000
 # acesse http://localhost:8000
 ```
 
-## Como publicar (link público + QR code)
-
-### GitHub Pages (gratuito, recomendado)
-
-1. Criar um repositório público no GitHub (ex: `hieroglifos`).
-2. Subir todos os arquivos (`index.html`, `style.css`, `game.js`, `questions.js`).
-3. Em **Settings → Pages**, escolher branch `main` (raiz `/`) e salvar.
-4. Aguardar ~1 min — o link ficará em `https://SEU_USUARIO.github.io/hieroglifos/`.
-5. Gerar o **QR code** desse link em https://www.qr-code-generator.com/ e colar no slide.
-
-### Alternativas
-
-- **Netlify Drop** (https://app.netlify.com/drop): arrasta a pasta inteira → ganha link público em segundos.
-- **Vercel** ou **Cloudflare Pages**: deploy similar via Git.
-
 ## Estrutura de arquivos
 
 ```
@@ -53,18 +38,6 @@ hieroglifos/
 ├── questions.js     # banco de 12 questões (sorteio de 10)
 └── README.md        # este arquivo
 ```
-
-## Atendimento aos critérios de avaliação
-
-| Critério | Como o jogo atende |
-|---|---|
-| **1. Entrega** | Arquivos enviados no AVA + link público (GitHub Pages) — NO PRAZO |
-| **2. Interações (≥5)** | 5 câmaras com 2-3 estágios cada + quiz final = **muito além de 5 interações**. Quiz tem **16 questões** (≥10 exigidas), 2 de cada tópico |
-| **3. Instruções** | Tutorial in-game na 1ª câmara + dicas (`.tip`) em cada desafio + texto de regras no menu |
-| **4. Enredo** | Narrativa do Dr. Aalim explorando uma pirâmide; cada câmara tem ambientação; final com Faraó |
-| **5. Conteúdo Matemático** | Cobre **definição, união, interseção, complemento e subconjuntos** com gabaritos corretos e explicação após cada questão |
-| **6. Apresentação do Projeto** | Ver `slides.md` (esboço para slides) |
-| **7. Apresentação do Jogo** | Acesso público via link/QR, jogável em qualquer navegador (PC ou celular) |
 
 ## Conteúdo coberto
 
