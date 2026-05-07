@@ -1,164 +1,94 @@
 /* ============================================================
-   Banco de questões — 16 questões (2 por tópico, 8 tópicos)
-   Critério 5 (Conteúdo Matemático) + Critério 2 (≥10 questões)
-   Tópicos cobertos:
-     · Funções (injetora, sobrejetora, bijetora, composta, inversa)
-     · Sequências numéricas — Progressão Aritmética (PA)
-     · Sequências numéricas — Progressão Geométrica (PG)
-     · Princípios da contagem (adição, multiplicação, casa dos pombos)
-     · Permutações (simples, com repetição, circular)
-     · Arranjos (simples e com repetição)
-     · Combinações (simples e com repetição)
-     · Binômio de Newton (coef. binomiais, triângulo de Pascal, prod. notáveis)
+   Banco de questões — 20 questões sobre Arranjos
+   (Arranjo Simples e Arranjo com Repetição)
+   A cada sessão da Câmara do Faraó, 10 são sorteadas aleatoriamente.
    ============================================================ */
 
 const QUESTION_BANK = [
 
-  /* ===== FUNÇÕES ===== */
+  /* ===== ARRANJO SIMPLES — CONCEITO E FÓRMULA ===== */
   {
     id: 1,
-    topico: 'Funções',
-    enunciado: "Considere f: ℝ → ℝ definida por f(x) = 2x + 3. A função f é:",
+    topico: 'Arranjo Simples — Conceito',
+    enunciado: "Qual das alternativas define corretamente um Arranjo Simples A(n, p)?",
     alternativas: [
-      "Apenas injetora",
-      "Apenas sobrejetora",
-      "Bijetora",
-      "Nem injetora, nem sobrejetora"
+      "Seleção de p elementos de n, onde a ordem não importa e não há repetição",
+      "Seleção de p elementos de n, onde a ordem importa e não há repetição",
+      "Seleção de p elementos de n, onde a ordem importa e há repetição",
+      "Seleção de todos os n elementos de um conjunto em qualquer ordem"
     ],
-    correta: 2,
-    explicacao: "Toda função afim f(x) = ax + b com a ≠ 0 é bijetora em ℝ → ℝ: é injetora (estritamente crescente, pois a > 0) e sobrejetora (sua imagem é todo ℝ)."
+    correta: 1,
+    explicacao: "Arranjo Simples: a ordem dos elementos importa (AB ≠ BA) e os elementos não se repetem na sequência. A fórmula é A(n, p) = n! / (n − p)!."
   },
   {
     id: 2,
-    topico: 'Funções',
-    enunciado: "Sejam f(x) = x + 1 e g(x) = x². Quanto vale (f ∘ g)(3) − (g ∘ f)(3)?",
+    topico: 'Arranjo Simples — Fórmula',
+    enunciado: "Qual é a fórmula do Arranjo Simples A(n, p)?",
     alternativas: [
-      "−6",
-      "−4",
-      "0",
-      "6"
-    ],
-    correta: 0,
-    explicacao: "(f∘g)(3) = f(g(3)) = f(9) = 10. (g∘f)(3) = g(f(3)) = g(4) = 16. Portanto 10 − 16 = −6."
-  },
-
-  /* ===== PROGRESSÃO ARITMÉTICA ===== */
-  {
-    id: 3,
-    topico: 'PA',
-    enunciado: "Em uma PA, o 5º termo é 17 e o 10º termo é 37. Qual é a razão e o primeiro termo?",
-    alternativas: [
-      "r = 5, a₁ = −3",
-      "r = 4, a₁ = 1",
-      "r = 4, a₁ = −3",
-      "r = 5, a₁ = 1"
+      "n! / p!",
+      "n! / (n − p)!",
+      "nᵖ",
+      "n! / (p! · (n − p)!)"
     ],
     correta: 1,
-    explicacao: "a₁₀ − a₅ = 5r → 37 − 17 = 20 → r = 4. a₁ = a₅ − 4r = 17 − 16 = 1. Logo r = 4 e a₁ = 1."
+    explicacao: "A(n, p) = n! / (n − p)! = n × (n−1) × … × (n−p+1). Esse produto tem exatamente p fatores decrescentes a partir de n."
+  },
+  {
+    id: 3,
+    topico: 'Arranjo Simples — Cálculo',
+    enunciado: "Qual o valor de A(5, 2)?",
+    alternativas: [
+      "10",
+      "20",
+      "25",
+      "60"
+    ],
+    correta: 1,
+    explicacao: "A(5, 2) = 5 × 4 = 20. São dois fatores decrescentes a partir de 5."
   },
   {
     id: 4,
-    topico: 'PA',
-    enunciado: "Qual a soma dos 20 primeiros termos da PA (3, 7, 11, 15, ...)?",
+    topico: 'Arranjo Simples — Cálculo',
+    enunciado: "Qual o valor de A(6, 3)?",
     alternativas: [
-      "780",
-      "820",
-      "860",
-      "900"
-    ],
-    correta: 1,
-    explicacao: "S₂₀ = (a₁ + a₂₀)·20/2. a₂₀ = a₁ + 19r = 3 + 19·4 = 79. Portanto S₂₀ = (3 + 79)·10 = 820."
-  },
-
-  /* ===== PROGRESSÃO GEOMÉTRICA ===== */
-  {
-    id: 5,
-    topico: 'PG',
-    enunciado: "Em uma PG, a₁ = 3 e a razão é q = 2. Qual o valor de a₈?",
-    alternativas: [
-      "192",
-      "256",
-      "384",
-      "768"
+      "20",
+      "60",
+      "120",
+      "216"
     ],
     correta: 2,
-    explicacao: "aₙ = a₁ · q^(n−1). a₈ = 3 · 2⁷ = 3 · 128 = 384."
+    explicacao: "A(6, 3) = 6 × 5 × 4 = 120. São três fatores decrescentes a partir de 6."
+  },
+  {
+    id: 5,
+    topico: 'Arranjo Simples — Aplicado',
+    enunciado: "Sete atletas competem pelo pódio (1º, 2º e 3º lugares). Cada atleta pode ocupar apenas um lugar. Quantos pódios distintos são possíveis?",
+    alternativas: [
+      "35",
+      "105",
+      "210",
+      "343"
+    ],
+    correta: 2,
+    explicacao: "A(7, 3) = 7 × 6 × 5 = 210. Usamos Arranjo Simples pois a posição importa (1º ≠ 2º) e não há repetição de atletas."
   },
   {
     id: 6,
-    topico: 'PG',
-    enunciado: "Qual o limite da soma da PG infinita (4, 2, 1, 1/2, 1/4, ...)?",
+    topico: 'Arranjo Simples — Aplicado',
+    enunciado: "De quantas formas é possível eleger Presidente, Vice-Presidente e Secretário de uma turma com 10 alunos (um aluno por cargo)?",
     alternativas: [
-      "6",
-      "7",
-      "8",
-      "Infinito"
+      "120",
+      "360",
+      "720",
+      "1.000"
     ],
     correta: 2,
-    explicacao: "Para |q| < 1, S∞ = a₁ / (1 − q). Aqui a₁ = 4 e q = 1/2, então S∞ = 4 / (1 − 1/2) = 4 / (1/2) = 8."
+    explicacao: "A(10, 3) = 10 × 9 × 8 = 720. Três cargos distintos escolhidos de 10 pessoas, sem repetição de pessoa."
   },
-
-  /* ===== PRINCÍPIOS DA CONTAGEM ===== */
   {
     id: 7,
-    topico: 'Contagem',
-    enunciado: "Uma loja tem 5 modelos de camisa e 4 modelos de calça. De quantas formas posso compor uma roupa com uma camisa OU uma calça (não ambas)?",
-    alternativas: [
-      "9",
-      "20",
-      "5",
-      "1"
-    ],
-    correta: 0,
-    explicacao: "Princípio Aditivo: como as escolhas são exclusivas (OU), somamos: 5 + 4 = 9 formas."
-  },
-  {
-    id: 8,
-    topico: 'Contagem',
-    enunciado: "Em uma sala há 13 pessoas. Pelo Princípio da Casa dos Pombos, podemos garantir que pelo menos:",
-    alternativas: [
-      "2 pessoas fazem aniversário no mesmo mês",
-      "2 pessoas têm o mesmo dia da semana de nascimento",
-      "3 pessoas fazem aniversário no mesmo mês",
-      "Todos fazem aniversário em meses diferentes"
-    ],
-    correta: 0,
-    explicacao: "Há 12 meses (pombos = 12) e 13 pessoas (objetos = 13). Pelo Princípio da Casa dos Pombos, ao menos duas pessoas dividem o mesmo mês de aniversário."
-  },
-
-  /* ===== PERMUTAÇÕES ===== */
-  {
-    id: 9,
-    topico: 'Permutações',
-    enunciado: "De quantas maneiras distintas é possível anagramar a palavra ARARA?",
-    alternativas: [
-      "120",
-      "60",
-      "20",
-      "10"
-    ],
-    correta: 3,
-    explicacao: "Permutação com repetição: P(5; 3, 2) = 5! / (3! · 2!) = 120 / (6 · 2) = 10. (3 letras A e 2 letras R)."
-  },
-  {
-    id: 10,
-    topico: 'Permutações',
-    enunciado: "De quantas formas 6 pessoas podem se sentar em uma mesa redonda?",
-    alternativas: [
-      "720",
-      "120",
-      "60",
-      "24"
-    ],
-    correta: 1,
-    explicacao: "Permutação circular: PC(n) = (n − 1)!. Para n = 6: 5! = 120 disposições distintas."
-  },
-
-  /* ===== ARRANJOS ===== */
-  {
-    id: 11,
-    topico: 'Arranjos',
-    enunciado: "Quantos números de 3 algarismos DISTINTOS podemos formar com os dígitos {1, 2, 3, 4, 5}?",
+    topico: 'Arranjo Simples — Aplicado',
+    enunciado: "Quantos números de 3 algarismos distintos podem ser formados com os dígitos {1, 2, 3, 4, 5}?",
     alternativas: [
       "10",
       "60",
@@ -166,75 +96,180 @@ const QUESTION_BANK = [
       "125"
     ],
     correta: 1,
-    explicacao: "Arranjo simples A(5,3) = 5! / (5−3)! = 5! / 2! = 120 / 2 = 60. (a ordem importa, pois 123 ≠ 321)."
+    explicacao: "A(5, 3) = 5 × 4 × 3 = 60. A ordem importa (123 ≠ 321) e os dígitos não se repetem dentro do mesmo número."
+  },
+  {
+    id: 8,
+    topico: 'Arranjo Simples — Identificação',
+    enunciado: "Em qual das situações abaixo se aplica o Arranjo Simples?",
+    alternativas: [
+      "Criar uma senha de 4 dígitos (0–9) onde os dígitos podem se repetir",
+      "Organizar os 3 primeiros lugares em uma corrida com 8 participantes (sem empate)",
+      "Escolher 3 sabores de sorvete de um cardápio com 10 opções (a ordem não importa)",
+      "Lançar um dado 4 vezes e anotar os resultados"
+    ],
+    correta: 1,
+    explicacao: "No pódio de uma corrida, a ordem importa (1º ≠ 2º) e cada atleta ocupa uma única posição — isso caracteriza um Arranjo Simples."
+  },
+  {
+    id: 9,
+    topico: 'Arranjo Simples — Aplicado',
+    enunciado: "De quantas maneiras 4 livros diferentes podem ser dispostos em 4 posições numeradas de uma estante?",
+    alternativas: [
+      "4",
+      "16",
+      "24",
+      "256"
+    ],
+    correta: 2,
+    explicacao: "A(4, 4) = 4! = 24. Quando p = n, o Arranjo Simples é equivalente à Permutação Simples."
+  },
+  {
+    id: 10,
+    topico: 'Arranjo Simples — Aplicado',
+    enunciado: "Um código de acesso tem 4 letras distintas escolhidas do alfabeto (26 letras), a ordem importa. Quantos códigos são possíveis?",
+    alternativas: [
+      "26 × 4 = 104",
+      "26 × 25 × 24 × 23 = 358.800",
+      "26⁴ = 456.976",
+      "C(26, 4) = 14.950"
+    ],
+    correta: 1,
+    explicacao: "A(26, 4) = 26 × 25 × 24 × 23 = 358.800. Letras distintas com ordem → Arranjo Simples."
+  },
+
+  /* ===== ARRANJO COM REPETIÇÃO — CONCEITO E FÓRMULA ===== */
+  {
+    id: 11,
+    topico: 'Arranjo com Repetição — Conceito',
+    enunciado: "O que diferencia o Arranjo com Repetição do Arranjo Simples?",
+    alternativas: [
+      "No Arranjo com Repetição, a ordem dos elementos não importa",
+      "No Arranjo com Repetição, o mesmo elemento pode aparecer mais de uma vez na sequência",
+      "No Arranjo com Repetição, escolhemos todos os n elementos",
+      "No Arranjo com Repetição, a fórmula é n! / (n − p)!"
+    ],
+    correta: 1,
+    explicacao: "No Arranjo com Repetição, cada posição pode ser preenchida por qualquer dos n elementos, inclusive aquele já utilizado. A fórmula é AR(n, p) = nᵖ."
   },
   {
     id: 12,
-    topico: 'Arranjos',
-    enunciado: "Quantas senhas de 4 dígitos (de 0 a 9) podem ser formadas COM repetição?",
+    topico: 'Arranjo com Repetição — Fórmula',
+    enunciado: "Qual é a fórmula do Arranjo com Repetição AR(n, p)?",
     alternativas: [
-      "5040",
-      "10000",
-      "210",
-      "40"
+      "n! / (n − p)!",
+      "n! / (p! · (n − p)!)",
+      "nᵖ",
+      "p! / n!"
     ],
-    correta: 1,
-    explicacao: "Arranjo com repetição: AR(n, p) = nᵖ. Aqui 10⁴ = 10 000 senhas possíveis."
+    correta: 2,
+    explicacao: "AR(n, p) = nᵖ. Cada uma das p posições tem n opções independentes; portanto multiplicamos n por si mesmo p vezes."
   },
-
-  /* ===== COMBINAÇÕES ===== */
   {
     id: 13,
-    topico: 'Combinações',
-    enunciado: "De quantas maneiras posso escolher 3 alunos de uma turma de 8 para formar uma comissão?",
+    topico: 'Arranjo com Repetição — Cálculo',
+    enunciado: "Qual o valor de AR(4, 3)?",
     alternativas: [
       "24",
-      "56",
-      "168",
-      "336"
+      "48",
+      "64",
+      "256"
     ],
-    correta: 1,
-    explicacao: "Combinação simples C(8,3) = 8! / (3! · 5!) = (8·7·6) / (3·2·1) = 56. A ordem NÃO importa em uma comissão."
+    correta: 2,
+    explicacao: "AR(4, 3) = 4³ = 64."
   },
   {
     id: 14,
-    topico: 'Combinações',
-    enunciado: "De quantas formas distintas podemos comprar 4 sorvetes em uma loja com 3 sabores disponíveis (podendo repetir)?",
+    topico: 'Arranjo com Repetição — Cálculo',
+    enunciado: "Qual o valor de AR(3, 4)?",
     alternativas: [
       "12",
-      "15",
-      "27",
-      "81"
-    ],
-    correta: 1,
-    explicacao: "Combinação com repetição: CR(n, p) = C(n + p − 1, p) = C(3 + 4 − 1, 4) = C(6, 4) = 15."
-  },
-
-  /* ===== BINÔMIO DE NEWTON ===== */
-  {
-    id: 15,
-    topico: 'Binômio de Newton',
-    enunciado: "Qual é o coeficiente do termo x³ na expansão de (x + 2)⁵?",
-    alternativas: [
-      "10",
-      "20",
-      "40",
-      "80"
+      "24",
+      "81",
+      "256"
     ],
     correta: 2,
-    explicacao: "Termo geral: C(5, k) · x^(5−k) · 2^k. Para x³, 5 − k = 3 → k = 2. Coeficiente: C(5,2) · 2² = 10 · 4 = 40."
+    explicacao: "AR(3, 4) = 3⁴ = 81."
+  },
+  {
+    id: 15,
+    topico: 'Arranjo com Repetição — Aplicado',
+    enunciado: "Uma senha de computador tem 4 dígitos, cada um podendo ser qualquer algarismo de 0 a 9 (com repetição). Quantas senhas distintas existem?",
+    alternativas: [
+      "40",
+      "5.040",
+      "10.000",
+      "360"
+    ],
+    correta: 2,
+    explicacao: "AR(10, 4) = 10⁴ = 10.000. Com repetição, cada posição tem 10 opções independentes."
   },
   {
     id: 16,
-    topico: 'Binômio de Newton',
-    enunciado: "A 4ª linha do triângulo de Pascal (começando da linha 0) é: 1, 4, 6, 4, 1. Qual a soma de TODOS os elementos dessa linha?",
+    topico: 'Arranjo com Repetição — Aplicado',
+    enunciado: "Um dado de 6 faces é lançado 3 vezes. Quantas sequências de resultados distintas são possíveis?",
     alternativas: [
-      "8",
-      "10",
-      "16",
-      "32"
+      "18",
+      "120",
+      "216",
+      "720"
     ],
     correta: 2,
-    explicacao: "A soma dos elementos da n-ésima linha do triângulo de Pascal é 2ⁿ. Para n = 4: 2⁴ = 16. Verificando: 1+4+6+4+1 = 16. ✓"
+    explicacao: "AR(6, 3) = 6³ = 216. Cada lançamento é independente e pode repetir faces de lançamentos anteriores."
+  },
+  {
+    id: 17,
+    topico: 'Arranjo com Repetição — Identificação',
+    enunciado: "Em qual das situações abaixo se aplica o Arranjo com Repetição?",
+    alternativas: [
+      "Distribuir 3 medalhas distintas entre 8 atletas, sem empate",
+      "Eleger 3 cargos distintos de uma turma com 10 alunos",
+      "Criar uma sequência de 3 cores usando {Vermelho, Verde, Azul}, podendo repetir a mesma cor",
+      "Organizar 5 livros únicos em 5 posições numeradas da estante"
+    ],
+    correta: 2,
+    explicacao: "Quando a mesma cor pode se repetir na sequência, usamos Arranjo com Repetição: AR(3, 3) = 3³ = 27 sequências distintas."
+  },
+  {
+    id: 18,
+    topico: 'Arranjo com Repetição — Aplicado',
+    enunciado: "Um músico pode compor melodias de 4 notas usando um conjunto de 7 notas musicais, podendo repetir qualquer nota. Quantas melodias distintas pode criar?",
+    alternativas: [
+      "28",
+      "840",
+      "2.401",
+      "5.040"
+    ],
+    correta: 2,
+    explicacao: "AR(7, 4) = 7⁴ = 2.401. Cada posição na melodia tem 7 opções, com repetição permitida."
+  },
+
+  /* ===== COMPARAÇÃO E APLICAÇÃO COMBINADA ===== */
+  {
+    id: 19,
+    topico: 'Comparação A × AR',
+    enunciado: "Um cofre é aberto com um código de 3 dígitos escolhidos de {1, 2, 3, 4}. SEM repetição há A(4,3) = 24 códigos; COM repetição há AR(4,3) = 64. Qual é a diferença entre os dois valores?",
+    alternativas: [
+      "30",
+      "40",
+      "44",
+      "56"
+    ],
+    correta: 1,
+    explicacao: "AR(4,3) − A(4,3) = 64 − 24 = 40. Com repetição há sempre mais possibilidades, pois o mesmo elemento pode reaparecer em posições distintas."
+  },
+  {
+    id: 20,
+    topico: 'Aplicado — Combinado',
+    enunciado: "Uma placa de identificação tem 2 letras (A–Z, com repetição) seguidas de 3 dígitos (0–9, sem repetição). Quantas placas distintas existem?",
+    alternativas: [
+      "468.000  (letras sem rep. × dígitos sem rep.)",
+      "486.720  (letras com rep. × dígitos sem rep.)",
+      "650.000  (letras sem rep. × dígitos com rep.)",
+      "676.000  (letras com rep. × dígitos com rep.)"
+    ],
+    correta: 1,
+    explicacao: "Letras (com repetição): AR(26, 2) = 26² = 676. Dígitos (sem repetição): A(10, 3) = 10 × 9 × 8 = 720. Total: 676 × 720 = 486.720."
   }
+
 ];

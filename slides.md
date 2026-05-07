@@ -82,7 +82,7 @@
 
 ## Slide 8 — Acesso ao Jogo
 
-- 🔗 Link: `https://<usuario>.github.io/hieroglifos/`
+- 🔗 Link: `https://davisocoloski1.github.io/hieroglifos/`
 - 📱 QR Code (gerar e colar imagem grande aqui)
 - Funciona offline depois de carregado
 
