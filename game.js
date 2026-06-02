@@ -67,7 +67,7 @@ function loadState() {
   } catch (e) { /* dados corrompidos — começa do zero */ }
 }
 
-function resetGame() {
+function performReset() {
   clearAuto();
   state.completed = new Set();
   state.score = 0;
@@ -86,7 +86,7 @@ window.resetGame = () => {
     message: 'Dr. Aalim, ao recomeçar você abandonará tudo o que descobriu: as câmaras desvendadas e a sabedoria acumulada se perderão nas areias do tempo. Esta decisão não pode ser desfeita.',
     confirmLabel: 'Sim, recomeçar do início',
     cancelLabel: 'Não, continuar minha jornada',
-    onConfirm: resetGame
+    onConfirm: performReset
   });
 };
 
