@@ -38,12 +38,12 @@ const QUESTION_BANK = [
     topico: 'Arranjo Simples — Cálculo',
     enunciado: "Qual o valor de A(5, 2)?",
     alternativas: [
-      "10",
+      "16",
+      "18",
       "20",
-      "25",
-      "60"
+      "24"
     ],
-    correta: 1,
+    correta: 2,
     explicacao: "A(5, 2) = 5 × 4 = 20. São dois fatores decrescentes a partir de 5."
   },
   {
@@ -51,10 +51,10 @@ const QUESTION_BANK = [
     topico: 'Arranjo Simples — Cálculo',
     enunciado: "Qual o valor de A(6, 3)?",
     alternativas: [
-      "20",
-      "60",
+      "96",
+      "108",
       "120",
-      "216"
+      "132"
     ],
     correta: 2,
     explicacao: "A(6, 3) = 6 × 5 × 4 = 120. São três fatores decrescentes a partir de 6."
@@ -64,12 +64,12 @@ const QUESTION_BANK = [
     topico: 'Arranjo Simples — Aplicado',
     enunciado: "Sete atletas competem pelo pódio (1º, 2º e 3º lugares). Cada atleta pode ocupar apenas um lugar. Quantos pódios distintos são possíveis?",
     alternativas: [
-      "35",
-      "105",
+      "180",
       "210",
-      "343"
+      "240",
+      "270"
     ],
-    correta: 2,
+    correta: 1,
     explicacao: "A(7, 3) = 7 × 6 × 5 = 210. Usamos Arranjo Simples pois a posição importa (1º ≠ 2º) e não há repetição de atletas."
   },
   {
@@ -77,12 +77,12 @@ const QUESTION_BANK = [
     topico: 'Arranjo Simples — Aplicado',
     enunciado: "De quantas formas é possível eleger Presidente, Vice-Presidente e Secretário de uma turma com 10 alunos (um aluno por cargo)?",
     alternativas: [
-      "120",
-      "360",
+      "640",
       "720",
-      "1.000"
+      "810",
+      "900"
     ],
-    correta: 2,
+    correta: 1,
     explicacao: "A(10, 3) = 10 × 9 × 8 = 720. Três cargos distintos escolhidos de 10 pessoas, sem repetição de pessoa."
   },
   {
@@ -90,12 +90,12 @@ const QUESTION_BANK = [
     topico: 'Arranjo Simples — Aplicado',
     enunciado: "Quantos números de 3 algarismos distintos podem ser formados com os dígitos {1, 2, 3, 4, 5}?",
     alternativas: [
-      "10",
+      "48",
+      "54",
       "60",
-      "120",
-      "125"
+      "72"
     ],
-    correta: 1,
+    correta: 2,
     explicacao: "A(5, 3) = 5 × 4 × 3 = 60. A ordem importa (123 ≠ 321) e os dígitos não se repetem dentro do mesmo número."
   },
   {
@@ -116,10 +116,10 @@ const QUESTION_BANK = [
     topico: 'Arranjo Simples — Aplicado',
     enunciado: "De quantas maneiras 4 livros diferentes podem ser dispostos em 4 posições numeradas de uma estante?",
     alternativas: [
-      "4",
-      "16",
+      "12",
+      "18",
       "24",
-      "256"
+      "30"
     ],
     correta: 2,
     explicacao: "A(4, 4) = 4! = 24. Quando p = n, o Arranjo Simples é equivalente à Permutação Simples."
@@ -170,10 +170,10 @@ const QUESTION_BANK = [
     topico: 'Arranjo com Repetição — Cálculo',
     enunciado: "Qual o valor de AR(4, 3)?",
     alternativas: [
-      "24",
       "48",
+      "56",
       "64",
-      "256"
+      "72"
     ],
     correta: 2,
     explicacao: "AR(4, 3) = 4³ = 64."
@@ -183,10 +183,10 @@ const QUESTION_BANK = [
     topico: 'Arranjo com Repetição — Cálculo',
     enunciado: "Qual o valor de AR(3, 4)?",
     alternativas: [
-      "12",
-      "24",
+      "64",
+      "72",
       "81",
-      "256"
+      "96"
     ],
     correta: 2,
     explicacao: "AR(3, 4) = 3⁴ = 81."
@@ -196,10 +196,10 @@ const QUESTION_BANK = [
     topico: 'Arranjo com Repetição — Aplicado',
     enunciado: "Uma senha de computador tem 4 dígitos, cada um podendo ser qualquer algarismo de 0 a 9 (com repetição). Quantas senhas distintas existem?",
     alternativas: [
-      "40",
-      "5.040",
+      "8.100",
+      "9.000",
       "10.000",
-      "360"
+      "11.000"
     ],
     correta: 2,
     explicacao: "AR(10, 4) = 10⁴ = 10.000. Com repetição, cada posição tem 10 opções independentes."
@@ -209,10 +209,10 @@ const QUESTION_BANK = [
     topico: 'Arranjo com Repetição — Aplicado',
     enunciado: "Um dado de 6 faces é lançado 3 vezes. Quantas sequências de resultados distintas são possíveis?",
     alternativas: [
-      "18",
-      "120",
+      "180",
+      "200",
       "216",
-      "720"
+      "240"
     ],
     correta: 2,
     explicacao: "AR(6, 3) = 6³ = 216. Cada lançamento é independente e pode repetir faces de lançamentos anteriores."
@@ -235,12 +235,12 @@ const QUESTION_BANK = [
     topico: 'Arranjo com Repetição — Aplicado',
     enunciado: "Um músico pode compor melodias de 4 notas usando um conjunto de 7 notas musicais, podendo repetir qualquer nota. Quantas melodias distintas pode criar?",
     alternativas: [
-      "28",
-      "840",
+      "2.058",
       "2.401",
-      "5.040"
+      "2.744",
+      "3.087"
     ],
-    correta: 2,
+    correta: 1,
     explicacao: "AR(7, 4) = 7⁴ = 2.401. Cada posição na melodia tem 7 opções, com repetição permitida."
   },
 
@@ -250,10 +250,10 @@ const QUESTION_BANK = [
     topico: 'Comparação A × AR',
     enunciado: "Um cofre é aberto com um código de 3 dígitos escolhidos de {1, 2, 3, 4}. SEM repetição há A(4,3) = 24 códigos; COM repetição há AR(4,3) = 64. Qual é a diferença entre os dois valores?",
     alternativas: [
-      "30",
+      "36",
       "40",
       "44",
-      "56"
+      "48"
     ],
     correta: 1,
     explicacao: "AR(4,3) − A(4,3) = 64 − 24 = 40. Com repetição há sempre mais possibilidades, pois o mesmo elemento pode reaparecer em posições distintas."

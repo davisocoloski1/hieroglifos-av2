@@ -269,7 +269,7 @@ button.danger {
   margin: 14px 0;
   font-size: 1.1em;
 }
-.alternatives { display: grid; gap: 10px; margin-top: 14px; }
+.alternatives { display: grid; gap: 7px; margin-top: 14px; }
 .alt-btn {
   text-align: left;
   background: var(--sand);
@@ -392,9 +392,303 @@ button.danger {
   border-top: 1px dashed var(--gold-deep);
 }
 
-/* ====== Responsivo ====== */
+/* ====== Item 2 — Dica visual de clique ====== */
+.click-hint {
+  text-align: center;
+  font-size: 0.95em;
+  color: var(--gold-deep);
+  font-weight: bold;
+  margin: 10px 0 -2px;
+  animation: hintFade 2.2s ease-in-out infinite;
+}
+@keyframes hintFade {
+  0%, 100% { opacity: 0.55; transform: translateY(0); }
+  50%      { opacity: 1;    transform: translateY(2px); }
+}
+/* elementos clicáveis "pulsam" suavemente para chamar a atenção */
+.element.clickable {
+  animation: clickPulse 1.8s ease-in-out infinite;
+}
+.element.clickable:hover { animation: none; }
+@keyframes clickPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(212,160,23,0.0); }
+  50%      { box-shadow: 0 0 0 4px rgba(212,160,23,0.35); }
+}
+.element.selected.clickable { animation: none; }
+
+/* selo de cadeado nas câmaras bloqueadas */
+.lock-tag {
+  position: absolute; top: 6px; left: 8px;
+  font-size: 1.1em; opacity: 0.7;
+}
+
+/* ====== Item 7 — Banner de pontos e auto-avanço ====== */
+.points-banner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+  margin: 12px 0;
+  padding: 10px 14px;
+  background: rgba(212, 160, 23, 0.16);
+  border: 2px dashed var(--gold-deep);
+  border-radius: 8px;
+  animation: pop 0.25s ease;
+}
+.points-banner .pts-plus {
+  font-weight: bold;
+  font-size: 1.2em;
+  color: var(--green-nile);
+}
+.points-banner .pts-total { color: var(--ink); }
+
+.auto-advance {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 16px;
+}
+.auto-advance .auto-msg {
+  font-style: italic;
+  color: #5a3e1c;
+  font-size: 0.95em;
+}
+
+/* Item 4 — botão de acesso à Câmara do Tesouro com folga ao redor */
+.victory-cta {
+  display: flex;
+  justify-content: center;
+  margin: 32px 0 20px;
+  padding-top: 20px;
+  border-top: 2px dashed var(--gold-deep);
+}
+.victory-cta button {
+  font-size: 1.1em;
+  padding: 14px 28px;
+}
+
+/* ====== Modal temático de confirmação ====== */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(20, 12, 4, 0.6);
+  backdrop-filter: blur(2px);
+  animation: modalFade 0.2s ease;
+}
+@keyframes modalFade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+.modal {
+  background: var(--papyrus);
+  border: 3px double var(--gold-deep);
+  border-radius: 8px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.45);
+  max-width: 440px;
+  width: 100%;
+  padding: 26px 28px 24px;
+  text-align: center;
+  position: relative;
+  animation: modalPop 0.25s ease;
+}
+@keyframes modalPop {
+  0%   { transform: scale(0.85) translateY(10px); opacity: 0; }
+  100% { transform: scale(1) translateY(0); opacity: 1; }
+}
+.modal-glyph {
+  font-size: 2.8em;
+  color: var(--gold-deep);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.modal-title {
+  font-family: 'Papyrus', 'Georgia', serif;
+  color: var(--lapis);
+  margin: 0 0 10px;
+  font-size: 1.4em;
+}
+.modal-message {
+  color: var(--ink);
+  line-height: 1.5;
+  margin: 0 0 22px;
+}
+.modal-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.modal-actions button { width: 100%; }
+
 @media (max-width: 600px) {
-  .scroll { padding: 18px 16px; }
+  .modal { padding: 22px 18px; }
+  .modal-glyph { font-size: 2.3em; }
+  .modal-title { font-size: 1.2em; }
+}
+
+/* ====== Item 3 — Câmara discursiva (Oráculo) ====== */
+.discursive { margin: 14px 0; }
+.discursive textarea {
+  width: 100%;
+  font-family: 'Georgia', serif;
+  font-size: 1em;
+  color: var(--ink);
+  background: var(--papyrus);
+  border: 2px solid var(--gold-deep);
+  border-radius: 6px;
+  padding: 12px 14px;
+  resize: vertical;
+  line-height: 1.5;
+  box-shadow: inset 0 1px 4px rgba(0,0,0,0.12);
+}
+.discursive textarea:focus {
+  outline: none;
+  border-color: var(--lapis);
+  box-shadow: 0 0 0 3px rgba(31, 78, 121, 0.25);
+}
+
+/* ====== Item 10 — Tela final (Câmara do Tesouro) ====== */
+.victory { text-align: center; }
+.vic-glyphs {
+  font-size: 1.8em;
+  letter-spacing: 10px;
+  color: var(--gold-deep);
+  margin-bottom: 6px;
+  animation: glyphFloat 3s ease-in-out infinite;
+}
+@keyframes glyphFloat {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-6px); }
+}
+.vic-title {
+  border: none;
+  text-shadow: 2px 2px 0 var(--gold);
+  animation: pop 0.4s ease;
+}
+.vic-sub { max-width: 620px; margin: 0 auto 10px; }
+.vic-score { background: rgba(212, 160, 23, 0.2); }
+
+.victory-breakdown {
+  list-style: none;
+  padding: 0;
+  max-width: 460px;
+  margin: 12px auto 20px;
+  text-align: left;
+}
+.victory-breakdown li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-bottom: 1px dashed var(--sand-dark);
+}
+.victory-breakdown .glyph-mini { font-size: 1.3em; }
+.victory-breakdown .bd-status { margin-left: auto; font-weight: bold; font-size: 0.9em; }
+.victory-breakdown .bd-status.ok { color: var(--green-nile); }
+.victory-breakdown .bd-status.no { color: #999; }
+
+.vic-instruction { font-weight: bold; color: var(--lapis); margin-top: 18px; }
+.sarcophagus {
+  font-size: 4.5em;
+  cursor: pointer;
+  display: inline-block;
+  transition: transform 0.2s;
+  animation: sarcGlow 2s ease-in-out infinite;
+  user-select: none;
+}
+.sarcophagus:hover { transform: scale(1.1) rotate(-2deg); }
+.sarcophagus.opened {
+  animation: none;
+  transform: scale(1.15);
+}
+@keyframes sarcGlow {
+  0%, 100% { filter: drop-shadow(0 0 4px rgba(212,160,23,0.4)); }
+  50%      { filter: drop-shadow(0 0 16px rgba(212,160,23,0.9)); }
+}
+
+.treasure {
+  max-width: 600px;
+  margin: 16px auto 0;
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: opacity 0.5s ease, max-height 0.6s ease;
+}
+.treasure.show {
+  opacity: 1;
+  max-height: 600px;
+}
+.treasure-burst {
+  font-size: 1.6em;
+  letter-spacing: 6px;
+  margin-bottom: 10px;
+  animation: pop 0.5s ease;
+}
+.treasure blockquote {
+  font-style: italic;
+  border-left: 4px solid var(--gold-deep);
+  background: rgba(255,255,255,0.4);
+  margin: 12px 0;
+  padding: 12px 16px;
+  border-radius: 4px;
+  text-align: left;
+}
+
+/* ====== Item 4 — Responsivo / usabilidade mobile ====== */
+@media (max-width: 600px) {
+  #app { padding: 16px 10px 70px; }
+  .scroll { padding: 18px 14px; }
   h1 { font-size: 1.7em; }
+  h2 { font-size: 1.3em; }
   .hieroglyph-row { font-size: 1.2em; letter-spacing: 4px; }
+
+  /* HUD empilhado e legível */
+  .hud {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+    text-align: center;
+  }
+  .hud button { width: 100%; }
+
+  /* botões e alternativas com alvo de toque maior */
+  button, .btn { padding: 14px 18px; font-size: 1.05em; width: 100%; }
+  .row { flex-direction: column; }
+  .row button, .row .btn { width: 100%; }
+
+  .alternatives { gap: 10px; }
+  .alt-btn { padding: 16px; font-size: 1.05em; }
+
+  /* elementos clicáveis maiores para o dedo */
+  .element { min-width: 52px; height: 52px; font-size: 1.05em; }
+  .elements-pool { gap: 12px; padding: 14px 8px; }
+
+  .chamber-map { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .chamber-card .glyph { font-size: 2em; }
+
+  .points-banner { flex-direction: column; gap: 6px; }
+  .auto-advance { flex-direction: column; }
+  .auto-advance button { width: 100%; }
+  .sarcophagus { font-size: 3.5em; }
+  .rel-row { flex-direction: column; }
+}
+
+/* telas muito estreitas: mapa em coluna única */
+@media (max-width: 380px) {
+  .chamber-map { grid-template-columns: 1fr; }
+}
+
+/* respeita quem prefere menos animação */
+@media (prefers-reduced-motion: reduce) {
+  .element.clickable,
+  .click-hint,
+  .vic-glyphs,
+  .sarcophagus { animation: none; }
 }
